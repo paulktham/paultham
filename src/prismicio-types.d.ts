@@ -436,26 +436,6 @@ export interface ShowcaseSliceReversePrimary {
 	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
 	 */
 	body: prismic.RichTextField;
-
-	/**
-	 * Button Link field in *Showcase → Reverse → Primary*
-	 *
-	 * - **Field Type**: Link
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: showcase.reverse.primary.button
-	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-	 */
-	button: prismic.LinkField;
-
-	/**
-	 * Button Text field in *Showcase → Reverse → Primary*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: showcase.reverse.primary.button_text
-	 * - **Documentation**: https://prismic.io/docs/field#key-text
-	 */
-	button_text: prismic.KeyTextField;
 }
 
 /**

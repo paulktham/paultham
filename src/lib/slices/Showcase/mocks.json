@@ -132,18 +132,6 @@
 						}
 					}
 				]
-			},
-			"button": {
-				"__TYPE__": "LinkContent",
-				"value": {
-					"__TYPE__": "ExternalLink",
-					"url": "http://google.com"
-				}
-			},
-			"button_text": {
-				"__TYPE__": "FieldContent",
-				"value": "roll",
-				"type": "Text"
 			}
 		},
 		"items": [

@@ -121,22 +121,6 @@
             "allowTargetBlank": true,
             "multi": "paragraph,strong,em"
           }
-        },
-        "button": {
-          "type": "Link",
-          "config": {
-            "label": "Button Link",
-            "placeholder": "",
-            "allowTargetBlank": false,
-            "select": null
-          }
-        },
-        "button_text": {
-          "type": "Text",
-          "config": {
-            "label": "Button Text",
-            "placeholder": ""
-          }
         }
       },
       "items": {}
