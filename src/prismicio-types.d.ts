@@ -398,16 +398,6 @@ export type ShowcaseSliceDefault = prismic.SharedSliceVariation<
  */
 export interface ShowcaseSliceReversePrimary {
 	/**
-	 * Heading field in *Showcase → Reverse → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: showcase.reverse.primary.heading
-	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-	 */
-	heading: prismic.RichTextField;
-
-	/**
 	 * Image field in *Showcase → Reverse → Primary*
 	 *
 	 * - **Field Type**: Image
