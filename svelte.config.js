@@ -14,19 +14,27 @@ const config = {
 		adapter: adapter(),
 		prerender: {
 			handleHttpError: ({ path, referrer, message }) => {
-			  // This will be called when an HTTP error is encountered during prerendering
-			  console.error(`Error while prerendering ${path} from ${referrer}: ${message}`);
-			  
-			  // Optionally, you can customize the response here
-			  // For example, you might want to return a 404 page instead of failing the build
-			  if (message.includes('404')) {
+				// This will be called when an HTTP error is encountered during prerendering
+				console.error(`Error while prerendering ${path} from ${referrer}: ${message}`);
+
+				// Optionally, you can customize the response here
+				// For example, you might want to return a 404 page instead of failing the build
+				if (message.includes('404')) {
+					// Return a custom response for 404 errors
+					return {
+						status: 404,
+						body: 'Page not found'
+					};
+				}
+
+				// Return a custom response for other errors
 				return {
-				  status: 404,
-				  body: 'Page not found'
+					status: 500,
+					body: 'Internal Server Error'
 				};
-			  }
-			  throw new Error(message);
 			}
+			//   throw new Error(message);
+		}
 	},
 	preprocess: vitePreprocess()
 };
