@@ -66,10 +66,6 @@
 	<div
 		class="showcase__glow max-w-2x1 absolute -z-10 aspect-video w-full rounded-full bg-violet-500/40 mix-blend-screen blur-[120px] filter"
 	></div>
-	{#if slice.primary.heading}
-		<h2 class="showcase__heading md:text-7x1 text-balance text-center text-5xl font-medium">
-			<PrismicRichText field={slice.primary.heading} />
-		</h2>{/if}
 	<div
 		class="relative mt-16 grid items-center gap-8 rounded-xl border-violet-50/20 bg-gradient-to-b from-gray-50/15 to-gray-50/5 px-8 py-8 backdrop-blur-sm lg:grid-cols-3 lg:gap-0 lg:py-12"
 	>
@@ -89,11 +85,6 @@
 				<div class="prose prose-invert mt-4 max-w-xl">
 					<PrismicRichText field={slice.primary.body} />
 				</div>
-			{/if}
-			{#if slice.primary.button}
-				<ButtonLink field={slice.primary.button} class="mt-6"
-					>{slice.primary.button_text}</ButtonLink
-				>
 			{/if}
 		</div>
 		<PrismicImage

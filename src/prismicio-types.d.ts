@@ -182,6 +182,81 @@ export type SettingsDocument<Lang extends string = string> = prismic.PrismicDocu
 export type AllDocumentTypes = PageDocument | SettingsDocument;
 
 /**
+ * Primary content in *AnotherReverse → Default → Primary*
+ */
+export interface AnotherReverseSliceDefaultPrimary {
+	/**
+	 * Subheading field in *AnotherReverse → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: another_reverse.default.primary.subheading
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	subheading: prismic.RichTextField;
+
+	/**
+	 * Image field in *AnotherReverse → Default → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: another_reverse.default.primary.image
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	image: prismic.ImageField<never>;
+
+	/**
+	 * Icon field in *AnotherReverse → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: another_reverse.default.primary.icon
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	icon: prismic.SelectField<'1' | '2'>;
+
+	/**
+	 * Body field in *AnotherReverse → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: another_reverse.default.primary.body
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	body: prismic.RichTextField;
+}
+
+/**
+ * Default variation for AnotherReverse Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AnotherReverseSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<AnotherReverseSliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *AnotherReverse*
+ */
+type AnotherReverseSliceVariation = AnotherReverseSliceDefault;
+
+/**
+ * AnotherReverse Shared Slice
+ *
+ * - **API ID**: `another_reverse`
+ * - **Description**: AnotherReverse
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AnotherReverseSlice = prismic.SharedSlice<
+	'another_reverse',
+	AnotherReverseSliceVariation
+>;
+
+/**
  * Primary content in *Hero → Default → Primary*
  */
 export interface HeroSliceDefaultPrimary {
@@ -482,6 +557,10 @@ declare module '@prismicio/client' {
 			SettingsDocumentData,
 			SettingsDocumentDataNavigationItem,
 			AllDocumentTypes,
+			AnotherReverseSlice,
+			AnotherReverseSliceDefaultPrimary,
+			AnotherReverseSliceVariation,
+			AnotherReverseSliceDefault,
 			HeroSlice,
 			HeroSliceDefaultPrimary,
 			HeroSliceVariation,
