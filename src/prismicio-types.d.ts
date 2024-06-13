@@ -4,6 +4,92 @@ import type * as prismic from '@prismicio/client';
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+type AboutmeDocumentDataSlicesSlice = ShowcaseSlice | HeroSlice | RichTextSlice;
+
+/**
+ * Content for aboutme documents
+ */
+interface AboutmeDocumentData {
+	/**
+	 * Company field in *aboutme*
+	 *
+	 * - **Field Type**: Title
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: aboutme.company
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	company: prismic.TitleField;
+
+	/**
+	 * Description field in *aboutme*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: aboutme.description
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	description: prismic.RichTextField;
+
+	/**
+	 * Slice Zone field in *aboutme*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: aboutme.slices[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#slices
+	 */
+	slices: prismic.SliceZone<AboutmeDocumentDataSlicesSlice> /**
+	 * Meta Title field in *aboutme*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A title of the page used for social media and search engines
+	 * - **API ID Path**: aboutme.meta_title
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */;
+	meta_title: prismic.KeyTextField;
+
+	/**
+	 * Meta Description field in *aboutme*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A brief summary of the page
+	 * - **API ID Path**: aboutme.meta_description
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	meta_description: prismic.KeyTextField;
+
+	/**
+	 * Meta Image field in *aboutme*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: aboutme.meta_image
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * aboutme document from Prismic
+ *
+ * - **API ID**: `aboutme`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type AboutmeDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+	Simplify<AboutmeDocumentData>,
+	'aboutme',
+	Lang
+>;
+
 type PageDocumentDataSlicesSlice = ShowcaseSlice | HeroSlice | RichTextSlice;
 
 /**
@@ -179,7 +265,7 @@ export type SettingsDocument<Lang extends string = string> = prismic.PrismicDocu
 	Lang
 >;
 
-export type AllDocumentTypes = PageDocument | SettingsDocument;
+export type AllDocumentTypes = AboutmeDocument | PageDocument | SettingsDocument;
 
 /**
  * Primary content in *AnotherReverse → Default → Primary*
@@ -255,6 +341,58 @@ export type AnotherReverseSlice = prismic.SharedSlice<
 	'another_reverse',
 	AnotherReverseSliceVariation
 >;
+
+/**
+ * Primary content in *CaseStudies → Default → Primary*
+ */
+export interface CaseStudiesSliceDefaultPrimary {
+	/**
+	 * Heading field in *CaseStudies → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: case_studies.default.primary.heading
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	heading: prismic.RichTextField;
+
+	/**
+	 * Body field in *CaseStudies → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: case_studies.default.primary.body
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	body: prismic.RichTextField;
+}
+
+/**
+ * Default variation for CaseStudies Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CaseStudiesSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<CaseStudiesSliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *CaseStudies*
+ */
+type CaseStudiesSliceVariation = CaseStudiesSliceDefault;
+
+/**
+ * CaseStudies Shared Slice
+ *
+ * - **API ID**: `case_studies`
+ * - **Description**: CaseStudies
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CaseStudiesSlice = prismic.SharedSlice<'case_studies', CaseStudiesSliceVariation>;
 
 /**
  * Primary content in *Hero → Default → Primary*
@@ -550,6 +688,9 @@ declare module '@prismicio/client' {
 
 	namespace Content {
 		export type {
+			AboutmeDocument,
+			AboutmeDocumentData,
+			AboutmeDocumentDataSlicesSlice,
 			PageDocument,
 			PageDocumentData,
 			PageDocumentDataSlicesSlice,
@@ -561,6 +702,10 @@ declare module '@prismicio/client' {
 			AnotherReverseSliceDefaultPrimary,
 			AnotherReverseSliceVariation,
 			AnotherReverseSliceDefault,
+			CaseStudiesSlice,
+			CaseStudiesSliceDefaultPrimary,
+			CaseStudiesSliceVariation,
+			CaseStudiesSliceDefault,
 			HeroSlice,
 			HeroSliceDefaultPrimary,
 			HeroSliceVariation,
